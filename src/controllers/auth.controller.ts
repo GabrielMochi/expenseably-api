@@ -1,13 +1,9 @@
-import Authentication from "@domain/authentication.domain";
-import { validateLogin } from "@services/validate-login";
-
-interface ValidationLoginResponse {
-  authenticated: boolean;
-}
+import { Authentication } from "@domain/authentication.domain";
+import { isAuthenticationValid } from "@services/is-authentication-valid";
 
 export class AuthController {
-  public async validateLogin(authentication: Authentication): Promise<ValidationLoginResponse> {
-    const authenticated = await validateLogin(authentication);
-    return { authenticated };
+  public async isAuthenticationValid(authentication: Authentication): Promise<boolean> {
+    const isValid = await isAuthenticationValid(authentication);
+    return isValid;
   }
 }
