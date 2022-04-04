@@ -8,6 +8,7 @@ import { redisClient } from "./redis";
 import cors from "cors";
 import { ALLOWED_ORIGIN } from "@config/cors.config";
 import { routes } from "@routes/index";
+import { checkAuth } from "@middlewares/check-auth.middleware";
 
 export const app = express();
 
@@ -31,6 +32,8 @@ app.use(
 );
 
 app.use(cors({ origin: ALLOWED_ORIGIN, credentials: true }));
+
+app.use(checkAuth);
 
 app.use("/", routes);
 
