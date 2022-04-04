@@ -19,6 +19,7 @@
     "express-pino-logger": "^7.0.0",
     "express-session": "^1.17.2",
     "module-alias": "^2.2.2",
+    "mongoose": "^6.2.9",
     "pino": "^7.9.2",
     "redis": "3"
   },
