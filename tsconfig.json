@@ -5,8 +5,12 @@
     "allowSyntheticDefaultImports": true,
     "target": "es6",
     "noImplicitAny": true,
+    "removeComments": true,
     "moduleResolution": "node",
     "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
@@ -16,11 +20,13 @@
       "@enums/*": ["src/entities/enums/*"],
       "@exceptions/*": ["src/entities/exceptions/*"],
       "@interfaces/*": ["src/entities/interfaces/*"],
+      "@models/*": ["src/entities/models/*"],
       "@infra/*": ["src/infra/*"],
       "@routes/*": ["src/routes/*"],
       "@services/*": ["src/services/*"],
       "@controllers/*": ["src/controllers/*"],
-      "@middlewares/*": ["src/middlewares/*"]
+      "@middlewares/*": ["src/middlewares/*"],
+      "@schemas/*": ["src/infra/mongo/schemas/*"]
     }
   },
   "include": ["src/**/*", "src/index.d.ts"]
