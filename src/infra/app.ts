@@ -5,6 +5,7 @@ import session from "express-session";
 import redisStoreFactory from "connect-redis";
 import { SESSION_MAX_AGE, SESSION_SECRET, SESSION_SECURE } from "@config/session.config";
 import { redisClient } from "./redis";
+import cors from "cors";
 
 export const app = express();
 
@@ -26,6 +27,8 @@ app.use(
     saveUninitialized: false,
   }),
 );
+
+app.use(cors());
 
 app.get("/", (req, res) => {
   req.session.views = req.session.views ? req.session.views + 1 : 1;
