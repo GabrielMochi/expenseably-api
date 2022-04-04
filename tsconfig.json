@@ -10,7 +10,15 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*"]
+      "@config/*": ["src/config/*"],
+      "@domain/*": ["src/entities/domain/*"],
+      "@dto/*": ["src/entities/dto/*"],
+      "@enums/*": ["src/entities/enums/*"],
+      "@exceptions/*": ["src/entities/exceptions/*"],
+      "@interfaces/*": ["src/entities/interfaces/*"],
+      "@infra/*": ["src/infra/*"],
+      "@routes/*": ["src/routes/*"],
+      "@services/*": ["src/services/*"]
     }
   },
   "include": ["src/**/*"]
