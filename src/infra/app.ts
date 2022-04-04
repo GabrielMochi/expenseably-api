@@ -29,7 +29,7 @@ app.use(
   }),
 );
 
-app.use(cors({ origin: ALLOWED_ORIGIN }));
+app.use(cors({ origin: ALLOWED_ORIGIN, credentials: true }));
 
 app.get("/health", (req, res) => {
   req.session.views = req.session.views ? req.session.views + 1 : 1;
