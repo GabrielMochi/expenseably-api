@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "start": "tsc & node .",
+    "start": "node .",
     "dev": "docker-compose up -d && NODE_ENV=development tsc-watch --onSuccess \"nodemon .\""
   },
   "dependencies": {
