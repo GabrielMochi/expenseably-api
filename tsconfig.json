@@ -18,7 +18,9 @@
       "@interfaces/*": ["src/entities/interfaces/*"],
       "@infra/*": ["src/infra/*"],
       "@routes/*": ["src/routes/*"],
-      "@services/*": ["src/services/*"]
+      "@services/*": ["src/services/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@middlewares/*": ["src/middlewares/*"]
     }
   },
   "include": ["src/**/*", "src/index.d.ts"]
