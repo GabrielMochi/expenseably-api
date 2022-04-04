@@ -9,6 +9,7 @@ import cors from "cors";
 import { ALLOWED_ORIGIN } from "@config/cors.config";
 import { routes } from "@routes/index";
 import { checkAuth } from "@middlewares/check-auth.middleware";
+import { errorHandler } from "@middlewares/error-handler.middleware";
 
 export const app = express();
 
@@ -37,6 +38,8 @@ app.use(checkAuth);
 
 app.use("/", routes);
 
-app.get("/health", (req, res) => {
+app.get("/health", async (req, res) => {
   res.json({ health: "ok" });
 });
+
+app.use(errorHandler);
