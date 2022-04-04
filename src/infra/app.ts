@@ -7,6 +7,7 @@ import { SESSION_MAX_AGE, SESSION_SECRET, SESSION_SECURE } from "@config/session
 import { redisClient } from "./redis";
 import cors from "cors";
 import { ALLOWED_ORIGIN } from "@config/cors.config";
+import { routes } from "@routes/index";
 
 export const app = express();
 
@@ -30,6 +31,8 @@ app.use(
 );
 
 app.use(cors({ origin: ALLOWED_ORIGIN, credentials: true }));
+
+app.use("/", routes);
 
 app.get("/health", (req, res) => {
   res.json({ health: "ok" });
