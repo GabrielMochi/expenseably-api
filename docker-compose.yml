@@ -19,14 +19,13 @@ services:
     image: redis
     container_name: "redis"
     restart: "always"
-    env_file: .env
     volumes:
       - redis:/data
     ports:
       - "6379:6379"
     expose:
       - "6379"
-    command: redis-server --requirepass "$REDIS_PASSWORD"
+    command: redis-server
 
 volumes:
   mongodb:
