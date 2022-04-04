@@ -1,4 +1,4 @@
-import Authentication from "@domain/authentication.domain";
+import { Authentication } from "@domain/authentication.domain";
 import { Schema } from "mongoose";
 
 export const authenticationSchema = new Schema<Authentication>(
