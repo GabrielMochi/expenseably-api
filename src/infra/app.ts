@@ -32,6 +32,5 @@ app.use(
 app.use(cors({ origin: ALLOWED_ORIGIN, credentials: true }));
 
 app.get("/health", (req, res) => {
-  req.session.views = req.session.views ? req.session.views + 1 : 1;
-  res.json({ views: req.session.views, secure: SESSION_SECURE, env: process.env.NODE_ENV });
+  res.json({ health: "ok" });
 });
