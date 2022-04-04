@@ -6,6 +6,7 @@ import redisStoreFactory from "connect-redis";
 import { SESSION_MAX_AGE, SESSION_SECRET, SESSION_SECURE } from "@config/session.config";
 import { redisClient } from "./redis";
 import cors from "cors";
+import { ALLOWED_ORIGIN } from "@config/cors.config";
 
 export const app = express();
 
@@ -28,7 +29,7 @@ app.use(
   }),
 );
 
-app.use(cors());
+app.use(cors({ origin: ALLOWED_ORIGIN }));
 
 app.get("/", (req, res) => {
   req.session.views = req.session.views ? req.session.views + 1 : 1;
