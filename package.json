@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc & node .",
-    "dev": "NODE_ENV=development tsc-watch --onSuccess \"nodemon .\""
+    "dev": "NODE_ENV=development docker-compose up -d && tsc-watch --onSuccess \"nodemon .\""
   },
   "dependencies": {
     "dotenv": "^16.0.0",
