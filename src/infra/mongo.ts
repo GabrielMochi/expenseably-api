@@ -2,13 +2,13 @@ import { MONGO_URI } from "@config/mongo.config";
 import mongoose from "mongoose";
 import { logger } from "./logger";
 
-export const connect = (): void => {
-  mongoose.connect(MONGO_URI, (error) => {
-    if (error) {
-      logger.error(error);
-      process.exit(1);
-    }
+export const connect = (): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(MONGO_URI, (error) => {
+      if (error) return reject(error);
 
-    logger.info("mongo connection established");
+      resolve();
+      logger.info("mongo connection established");
+    });
   });
 };

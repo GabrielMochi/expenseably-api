@@ -27,5 +27,5 @@ app.use(
 
 app.get("/", (req, res) => {
   req.session.views = req.session.views ? req.session.views + 1 : 1;
-  res.json(req.session.views);
+  res.json({ views: req.session.views, secure: SESSION_SECURE, env: process.env.NODE_ENV });
 });
