@@ -12,12 +12,14 @@ const RedisStore = redisStoreFactory(session);
 
 app.use(pino({ logger }));
 
+app.set("trust proxy", 1);
+
 app.use(
   session({
     store: new RedisStore({ client: redisClient }),
     secret: SESSION_SECRET,
     cookie: {
-      secure: false,
+      secure: SESSION_SECURE,
       maxAge: SESSION_MAX_AGE,
     },
     resave: true,
