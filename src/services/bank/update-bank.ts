@@ -7,6 +7,9 @@ export const updateBank = async (id: string, { name }: Bank): Promise<Bank> => {
 
   if (!bankModel) throw new NotFoundException();
 
-  const updatedBank = await BankModel.findByIdAndUpdate(id, { name }).populate("user");
+  const updatedBank = await BankModel.findByIdAndUpdate(id, { name }, { new: true }).populate(
+    "user",
+  );
+
   return updatedBank;
 };
