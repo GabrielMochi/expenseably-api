@@ -2,7 +2,7 @@ import { LoadQueryParams, Transaction } from "@domain/transaction.domain";
 import { TransactionModel } from "@models/transaction.model";
 import { Types } from "mongoose";
 
-export const listTransactionByBank = async (
+export const listTransactionsByBank = async (
   bankId: string,
   queryParams?: LoadQueryParams,
 ): Promise<Transaction[]> => {
