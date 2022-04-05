@@ -15,6 +15,8 @@ export const transactionSchema = new Schema<Transaction>({
   type: { type: String, enum: TransactionType, required: false },
 });
 
+transactionSchema.index({ description: "text", amount: "text" });
+
 transactionSchema.virtual("id").get(function () {
   return this._id.toHexString();
 });
