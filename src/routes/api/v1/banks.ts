@@ -34,7 +34,7 @@ banks.get(
       search,
     });
 
-    return transactions;
+    return { transactions };
   }),
 );
 
