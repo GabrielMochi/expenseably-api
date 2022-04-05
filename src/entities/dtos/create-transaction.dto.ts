@@ -1,7 +1,8 @@
+import { Bank } from "@domain/bank.domain";
+import { Currency, TransactionCategory, TransactionType } from "@domain/transaction.domain";
 import { Expose, Type } from "class-transformer";
 import {
   IsCurrency,
-  IsDateString,
   IsDefined,
   IsEnum,
   IsNotEmpty,
@@ -11,38 +12,8 @@ import {
   IsString,
   ValidateNested,
 } from "class-validator";
-import { Bank } from "./bank.domain";
 
-export enum TransactionType {
-  INCOME = "INCOME",
-  EXPENSE = "EXPENSE",
-}
-
-export enum TransactionCategory {
-  SALARY = "SALARY",
-  FOOD = "FOOD",
-  TRANSPORT = "TRANSPORT",
-  HOUSE = "HOUSE",
-  OTHER = "OTHER",
-}
-
-export enum Currency {
-  USD = "USD",
-  EUR = "EUR",
-}
-
-export type LoadQueryParams = {
-  category?: TransactionCategory;
-  search?: string;
-};
-
-export class Transaction {
-  @IsDefined()
-  @IsString()
-  @IsNotEmpty()
-  @Expose()
-  id: string;
-
+export class CreateTransactionDto {
   @IsDefined()
   @IsString()
   @IsCurrency({ allow_negatives: false, decimal_separator: "." })
@@ -72,12 +43,6 @@ export class Transaction {
   @IsOptional()
   @Expose()
   description?: string;
-
-  @IsDefined()
-  @IsDateString()
-  @IsNotEmpty()
-  @Expose()
-  createdAt: Date;
 
   @IsDefined()
   @IsObject()
