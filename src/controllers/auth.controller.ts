@@ -1,5 +1,5 @@
 import { Authentication } from "@domain/authentication.domain";
-import { isAuthenticationValid } from "@services/is-authentication-valid";
+import { isAuthenticationValid } from "@services/auth/is-authentication-valid";
 import md5 from "md5";
 
 export class AuthController {
