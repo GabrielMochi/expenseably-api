@@ -20,9 +20,9 @@ export const updateTransaction = async (
       description: transaction.description,
     },
     { new: true },
-  )
-    .populate("bank")
-    .populate("bank.user");
+  ).populate("bank");
+
+  await updatedTransaction.populate("bank.user");
 
   return updatedTransaction;
 };
