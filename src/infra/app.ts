@@ -11,7 +11,7 @@ import { routes } from "@routes/index";
 import { errorHandler } from "@middlewares/error-handler.middleware";
 import bodyParser from "body-parser";
 import path from "path";
-// import helmet from "helmet";
+import helmet from "helmet";
 
 export const app = express();
 
@@ -27,7 +27,7 @@ app.use(
     cookie: {
       secure: SESSION_SECURE,
       maxAge: SESSION_MAX_AGE,
-      sameSite: "none",
+      sameSite: "strict",
     },
     resave: true,
     saveUninitialized: false,
@@ -35,7 +35,7 @@ app.use(
 );
 
 app.use(cors({ origin: ALLOWED_ORIGIN, credentials: true }));
-// app.use(helmet());
+app.use(helmet());
 app.use(bodyParser.json());
 app.use("/docs", express.static(path.join(process.cwd(), "docs")));
 app.use("/", routes);
