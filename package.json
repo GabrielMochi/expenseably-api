@@ -12,7 +12,7 @@
     "start": "NODE_ENV=production node .",
     "dev": "NODE_ENV=development tsc-watch --onSuccess \"nodemon .\"",
     "predev": "docker-compose up -d && yarn openapi",
-    "prebuild": "docker-compose up -d && yarn openapi",
+    "prebuild": "yarn openapi",
     "openapi": "redoc-cli --output docs/index.html build docs/openapi.yml"
   },
   "dependencies": {
