@@ -1,6 +1,6 @@
 import { User } from "./user.domain";
 
-export default interface Bank {
+export class Bank {
   id: string;
   name: string;
   user: User;
