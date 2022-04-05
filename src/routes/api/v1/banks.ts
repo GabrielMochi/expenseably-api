@@ -1,5 +1,7 @@
 import { BankController } from "@controllers/bank.controller";
+import { TransactionController } from "@controllers/transaction.controller";
 import { Bank } from "@domain/bank.domain";
+import { LoadQueryParams } from "@domain/transaction.domain";
 import { CreateBankDto } from "@dtos/create-bank.dto";
 import { NotFoundException } from "@exceptions/not-found.exception";
 import { asyncHandler } from "@middlewares/async-handler.middleware";
@@ -10,6 +12,7 @@ import { Router } from "express";
 export const banks = Router();
 
 const bankController = new BankController();
+const transactionController = new TransactionController();
 
 banks.get(
   "/",
@@ -20,9 +23,20 @@ banks.get(
   }),
 );
 
-banks.get("/:id/transactions", () => {
-  throw new Error("method not implemented");
-});
+banks.get(
+  "/:id/transactions",
+  asyncHandler(async (req) => {
+    const { id: bankId } = req.params;
+    const { category, search } = req.query as LoadQueryParams;
+
+    const transactions = await transactionController.listTransactionsByUser(bankId, {
+      category,
+      search,
+    });
+
+    return transactions;
+  }),
+);
 
 banks.post(
   "/",
