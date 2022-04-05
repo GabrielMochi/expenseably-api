@@ -13,7 +13,7 @@ servers:
     description: Prod API
 
 paths:
-  "/auth":
+  /auth:
     post:
       tags: ["auth"]
       summary: Login and returns the session cookie
@@ -25,14 +25,14 @@ paths:
               $ref: "#/components/schemas/login"
       security: []
       responses:
-        "201":
+        201:
           description: User authenticate successfully
           headers:
             Set-Cookie:
               schema:
                 type: string
                 example: connect.sid=abcde12345; Path=/; HttpOnly
-        "401":
+        401:
           description: Invalid credentials
           content:
             application/json:
@@ -43,12 +43,33 @@ paths:
       summary: Check if user is authenticated
       security: []
       responses:
-        "200":
+        200:
           description: User can or not be logged in
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/is-authenticated"
+  /user:
+    get:
+      tags: ["user"]
+      summary: "Retrieves the user that are logged in"
+      responses:
+        200:
+          description: User retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: "#/components/schemas/user"
+        404:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/not-found"
+
     delete:
       tags: ["auth"]
       summary: Logout
@@ -76,6 +97,18 @@ components:
         message:
           type: string
           example: Unauthorized
+    not-found:
+      type: object
+      properties:
+        statusCode:
+          type: number
+          example: 404
+        error:
+          type: string
+          example: Not found
+        message:
+          type: string
+          example: Not found
     login:
       type: object
       properties:
@@ -94,6 +127,21 @@ components:
           type: boolean
           description: If true, then user is logged in
           example: true
+    user:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 624bb08a91728a0b74b23cc3
+        name:
+          type: string
+          example: Walter White
+        email:
+          type: string
+          example: walter_white@gmail.com
+        createdAt:
+          type: string
+          example: 2020-03-10T23:44:56.289Z
 
 security:
   - sessionAuth: []
