@@ -22,3 +22,7 @@ bankSchema.set("toJSON", {
     delete ret._id;
   },
 });
+
+bankSchema.pre("remove", function (callback) {
+  this.model("Transaction").remove({ bank: this._id }, callback);
+});
