@@ -1,0 +1,99 @@
+openapi: 3.0.0
+
+info:
+  title: Expenseably API
+  description: Expenseably API. Manage your expenses without tears or fears.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000/api/v1
+    description: Dev API
+
+  - url: https://extenseably-api.onrender.com/api/v1
+    description: Prod API
+
+paths:
+  "/auth":
+    post:
+      tags: ["auth"]
+      summary: Login and returns the session cookie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/login"
+      security: []
+      responses:
+        "201":
+          description: User authenticate successfully
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                example: connect.sid=abcde12345; Path=/; HttpOnly
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/unathorized"
+    get:
+      tags: ["auth"]
+      summary: Check if user is authenticated
+      security: []
+      responses:
+        "200":
+          description: User can or not be logged in
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/is-authenticated"
+    delete:
+      tags: ["auth"]
+      summary: Logout
+      security: []
+      responses:
+        "204":
+          description: Destroyes user session
+
+components:
+  securitySchemes:
+    sessionAuth:
+      type: apiKey
+      in: cookie
+      name: connect.sid
+  schemas:
+    unathorized:
+      type: object
+      properties:
+        statusCode:
+          type: number
+          example: 401
+        error:
+          type: string
+          example: Unauthorized
+        message:
+          type: string
+          example: Unauthorized
+    login:
+      type: object
+      properties:
+        username:
+          type: string
+          description: User email
+          example: walter_white@gmail.com
+        password:
+          type: string
+          description: User password
+          example: HelloWorld@123
+    is-authenticated:
+      type: object
+      properties:
+        authenticated:
+          type: boolean
+          description: If true, then user is logged in
+          example: true
+
+security:
+  - sessionAuth: []

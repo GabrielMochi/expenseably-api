@@ -8,15 +8,15 @@ import { redisClient } from "./redis";
 import cors from "cors";
 import { ALLOWED_ORIGIN } from "@config/cors.config";
 import { routes } from "@routes/index";
-import { checkAuth } from "@middlewares/check-auth.middleware";
 import { errorHandler } from "@middlewares/error-handler.middleware";
+import bodyParser from "body-parser";
+import path from "path";
 
 export const app = express();
 
 const RedisStore = redisStoreFactory(session);
 
 app.use(pino({ logger }));
-
 app.set("trust proxy", 1);
 
 app.use(
@@ -33,8 +33,9 @@ app.use(
 );
 
 app.use(cors({ origin: ALLOWED_ORIGIN, credentials: true }));
+app.use(bodyParser.json());
 
-app.use(checkAuth);
+app.use("/docs", express.static(path.join(process.cwd(), "docs")));
 
 app.use("/", routes);
 

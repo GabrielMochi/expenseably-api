@@ -1,6 +1,6 @@
 import { MONGO_URI } from "@config/mongo.config";
 import mongoose from "mongoose";
-import { logger } from "./logger";
+import { logger } from "../logger";
 
 export const connect = (): Promise<void> => {
   return new Promise((resolve, reject) => {

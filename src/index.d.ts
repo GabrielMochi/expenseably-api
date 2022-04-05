@@ -1,4 +1,4 @@
-import User from "@domain/User";
+import User from "@domain/user.domain";
 import "express-session";
 
 declare module "express-session" {
