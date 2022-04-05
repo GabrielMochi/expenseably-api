@@ -16,7 +16,7 @@
     "paths": {
       "@config/*": ["src/config/*"],
       "@domain/*": ["src/entities/domain/*"],
-      "@dto/*": ["src/entities/dto/*"],
+      "@dtos/*": ["src/entities/dtos/*"],
       "@enums/*": ["src/entities/enums/*"],
       "@exceptions/*": ["src/entities/exceptions/*"],
       "@interfaces/*": ["src/entities/interfaces/*"],
