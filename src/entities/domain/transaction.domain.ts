@@ -1,4 +1,4 @@
-import Bank from "./bank.domain";
+import { Bank } from "./bank.domain";
 
 export enum TransactionType {
   INCOME = "INCOME",

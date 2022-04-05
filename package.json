@@ -60,7 +60,7 @@
   "_moduleAliases": {
     "@config": "dist/config",
     "@domain": "dist/entities/domain",
-    "@dto": "dist/entities/dto",
+    "@dtos": "dist/entities/dtos",
     "@enums": "dist/entities/enums",
     "@exceptions": "dist/entities/exceptions",
     "@interfaces": "dist/entities/interfaces",
