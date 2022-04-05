@@ -14,11 +14,8 @@ export class TransactionController {
     return transactions;
   }
 
-  public async createTransaction(
-    transaction: CreateTransactionDto,
-    bankId: string,
-  ): Promise<Transaction> {
-    const transactionCreated = await createTransactionService(transaction, bankId);
+  public async createTransaction(transaction: CreateTransactionDto): Promise<Transaction> {
+    const transactionCreated = await createTransactionService(transaction);
     return transactionCreated;
   }
 

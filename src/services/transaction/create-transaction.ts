@@ -1,14 +1,16 @@
 import { Transaction } from "@domain/transaction.domain";
 import { CreateTransactionDto } from "@dtos/create-transaction.dto";
 import { TransactionModel } from "@models/transaction.model";
+import { Types } from "mongoose";
 
-export const createTransaction = async (
-  createTransactionDto: CreateTransactionDto,
-  bankId: string,
-): Promise<Transaction> => {
+export const createTransaction = async (dto: CreateTransactionDto): Promise<Transaction> => {
   const transaction = new TransactionModel({
-    ...createTransactionDto,
-    bank: { _id: bankId },
+    amount: dto.amount,
+    category: dto.category,
+    currency: dto.currency,
+    description: dto.description,
+    type: dto.type,
+    bank: { _id: new Types.ObjectId(dto.bank.id) },
   });
 
   await transaction.save();
