@@ -1,6 +1,6 @@
 import { Expose, Type } from "class-transformer";
 import {
-  IsDate,
+  IsDateString,
   IsDefined,
   IsNotEmpty,
   IsNotEmptyObject,
@@ -32,7 +32,7 @@ export class Bank {
   user: User;
 
   @IsDefined()
-  @IsDate()
+  @IsDateString()
   @IsNotEmpty()
   @Expose()
   createdAt: Date;

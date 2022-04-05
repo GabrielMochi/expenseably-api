@@ -1,5 +1,5 @@
 import { Expose } from "class-transformer";
-import { IsDate, IsDefined, IsNotEmpty, IsString } from "class-validator";
+import { IsDateString, IsDefined, IsNotEmpty, IsString } from "class-validator";
 
 export class User {
   @IsDefined()
@@ -21,7 +21,7 @@ export class User {
   email: string;
 
   @IsDefined()
-  @IsDate()
+  @IsDateString()
   @IsNotEmpty()
   @Expose()
   createdAt: Date;
