@@ -16,8 +16,8 @@ export class BankController {
     return bankCreated;
   }
 
-  public async updateBank(bank: Bank): Promise<Bank> {
-    const bankUpdated = await updateBankService(bank);
+  public async updateBank(id: string, bank: Bank): Promise<Bank> {
+    const bankUpdated = await updateBankService(id, bank);
     return bankUpdated;
   }
 
