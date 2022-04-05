@@ -108,6 +108,15 @@ paths:
                   bank:
                     $ref: "#/components/schemas/bank"
 
+  /banks/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: ID of the bank
+        required: true
+        schema:
+          type: string
+
     put:
       tags: ["banks"]
       summary: "Updates a bank"
