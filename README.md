@@ -29,7 +29,7 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#built-with">Built With</a></li>
+    <li><a href="#built-with">About the application</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -48,11 +48,45 @@
 
 <!-- ABOUT THE PROJECT -->
 
-## Built With
+## About the application
+
+### Built with
 
 - [Express.js](https://expressjs.com/) _as framework_
 - [Mongo DB](https://www.mongodb.com/) _as database_
 - [Redis](https://redis.io/) _as session storage_
+
+### Architecture
+
+The architecture of this project is based on the ideas of clean architecture developed by Robert Martin (a.k.a unclebob`s style).
+
+![Clear Architecture](https://i.imgur.com/FRyHkVu.jpg)
+
+That being said, here are the project modules and how they categorize themselves within the clean architecture:
+
+- #### `entities` (Enterprise Business Rules)
+
+  The `entities` module contains all entities that will be used along the project. It is divided into four sub-modules:
+
+  - `domain`: Representation of database schemas
+  - `dto`: Objects that are received and sent along the web
+  - `exceptions`: Just some custom exceptions
+  - `models`: Classes based on the `domain` but with some database access methods (they are instantiated by Mongoose)
+
+- #### `services` (Application Business Rules):
+
+  The `services` module contains all the use cases that are used in the project. Currently, all of those functions were implemented to make changes on the Database.
+
+- #### `controllers` (Interface Adapters):
+
+  The `controllers` module are the interface between the `routes` and `services`.
+
+- #### `middlewares` (Frameworks & Drivers):
+
+  The `middlewares` module contains custom middlewares that will be used by `Express`.
+
+- #### `routes` (Frameworks & Drivers):
+  The `routes` module contains all the routes implementations to receive HTTP requests.
 
 <!-- GETTING STARTED -->
 
