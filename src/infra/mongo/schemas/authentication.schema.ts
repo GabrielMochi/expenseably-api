@@ -7,7 +7,6 @@ export const authenticationSchema = new Schema<Authentication>(
     password: { type: String, required: true },
   },
   {
-    _id: false,
     timestamps: false,
   },
 );

@@ -5,7 +5,7 @@ import "@infra/env-loader";
 import { PORT } from "@config/app.config";
 import { app } from "@infra/app";
 import { logger } from "@infra/logger";
-import { connect as connectMongo } from "@infra/mongo";
+import { connect as connectMongo } from "@infra/mongo/index";
 
 async function main() {
   try {
