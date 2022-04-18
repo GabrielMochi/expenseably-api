@@ -6,7 +6,7 @@ import { CreateBankDto } from "@dtos/create-bank.dto";
 import { NotFoundException } from "@exceptions/not-found.exception";
 import { asyncHandler } from "@middlewares/async-handler.middleware";
 import { validation } from "@middlewares/validation.middleware";
-import Boom from "boom";
+import { notFound } from "@hapi/boom";
 import { Router } from "express";
 
 export const banks = Router();
@@ -56,7 +56,7 @@ banks.put(
       const updatedBank = await bankController.updateBank(req.params.id, req.body);
       return { bank: updatedBank };
     } catch (error) {
-      if (error instanceof NotFoundException) throw Boom.notFound();
+      if (error instanceof NotFoundException) throw notFound();
       throw error;
     }
   }),
@@ -68,7 +68,7 @@ banks.delete(
     try {
       await bankController.removeBank(req.params.id);
     } catch (error) {
-      if (error instanceof NotFoundException) throw Boom.notFound();
+      if (error instanceof NotFoundException) throw notFound();
       throw error;
     }
   }),

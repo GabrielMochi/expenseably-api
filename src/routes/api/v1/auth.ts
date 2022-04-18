@@ -3,7 +3,7 @@ import { UserController } from "@controllers/user.controller";
 import { Authentication } from "@domain/authentication.domain";
 import { asyncHandler } from "@middlewares/async-handler.middleware";
 import { validation } from "@middlewares/validation.middleware";
-import Boom from "boom";
+import { unauthorized } from "@hapi/boom";
 import { Router } from "express";
 
 export const auth = Router();
@@ -27,7 +27,7 @@ auth.post(
       return;
     }
 
-    throw Boom.unauthorized();
+    throw unauthorized();
   }),
 );
 

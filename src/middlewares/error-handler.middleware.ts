@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import Boom from "boom";
+import { Boom, internal } from "@hapi/boom";
 import { logger } from "@infra/logger";
 
 export const errorHandler = (
@@ -17,6 +17,6 @@ export const errorHandler = (
     return;
   }
 
-  const internalError = Boom.internal();
+  const internalError = internal();
   res.status(internalError.output.statusCode).json(internalError.output.payload);
 };

@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import { unauthorized } from "boom";
+import { unauthorized } from "@hapi/boom";
 
 const allowedPaths = ["/api/v1/auth/"];
 

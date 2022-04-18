@@ -4,7 +4,7 @@ import { CreateTransactionDto } from "@dtos/create-transaction.dto";
 import { NotFoundException } from "@exceptions/not-found.exception";
 import { asyncHandler } from "@middlewares/async-handler.middleware";
 import { validation } from "@middlewares/validation.middleware";
-import Boom from "boom";
+import { notFound } from "@hapi/boom";
 import { Router } from "express";
 
 export const transactions = Router();
@@ -32,7 +32,7 @@ transactions.put(
 
       return { transaction: updatedTransaction };
     } catch (error) {
-      if (error instanceof NotFoundException) throw Boom.notFound();
+      if (error instanceof NotFoundException) throw notFound();
       throw error;
     }
   }),
@@ -44,7 +44,7 @@ transactions.delete(
     try {
       await transactionController.removeTransaction(req.params.id);
     } catch (error) {
-      if (error instanceof NotFoundException) throw Boom.notFound();
+      if (error instanceof NotFoundException) throw notFound();
       throw error;
     }
   }),

@@ -1,4 +1,4 @@
-import Boom from "boom";
+import { badRequest } from "@hapi/boom";
 import { ClassConstructor, plainToInstance } from "class-transformer";
 import { validate, ValidationError } from "class-validator";
 import type { NextFunction, Request, Response } from "express";
@@ -11,7 +11,7 @@ export const validation =
     validate(data as Record<string, unknown>).then((errors) => {
       if (errors.length > 0) {
         const errorMessage = generateErrorMessage(errors);
-        next(Boom.badRequest(errorMessage));
+        next(badRequest(errorMessage));
         return;
       }
 
